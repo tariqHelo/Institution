@@ -120,7 +120,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{route('repository.index')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                مستودعات الفروع  
@@ -129,7 +129,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{route('reports.index')}}" class="nav-link">
               <i class="nav-icon fa fa-id-card"></i>
               <p>
                التقارير 

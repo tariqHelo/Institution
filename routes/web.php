@@ -8,6 +8,9 @@ use App\Http\Controllers\Admin\UsersController;
 
 use App\Http\Controllers\ExchangeController;
 use App\Http\Controllers\BasketController;
+use App\Http\Controllers\RepositoryController;
+use App\Http\Controllers\ReportsController;
+
 
 
 /*
@@ -42,4 +45,8 @@ Route::resource('dealers', DealersController::class);
 /* End Admin Route */
 Route::resource('exchange', ExchangeController::class);
 Route::resource('basket', BasketController::class);
+
+Route::resource('repository', RepositoryController::class);
+Route::resource('reports', ReportsController::class);
+
 Route::get('/basket/delete/{id}', [BasketController::class , 'destroy'])->name('basket.delete');
