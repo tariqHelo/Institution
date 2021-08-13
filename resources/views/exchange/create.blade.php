@@ -14,26 +14,17 @@
 @section('content')
 
 <div class="col-md-12">
-
-              @if ($errors->any())
-              <div class="alert alert-danger">
-                  <ul>
-                      @foreach($errors->all() as $message)
-                      <li>{{ $message }}</li>
-                      @endforeach
-                  </ul>
-              </div>
-              @endif
+              @include('shared.msg')
             <!-- general form elements -->
             <div class="card card-success">
               <div class="card-header">
-                <h3 class="card-title-rtl">إضافة بيانات الطلب</h3>
+                <h3 class="card-title-rtl">إضافة بيانات المستفيد</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="{{route('order.store')}}" method="POST">
+              <form role="form" action="{{route('exchange.store')}}" method="POST">
                 @csrf
-                @include('admin.orders._form',[
+                @include('exchange._form',[
                   'button' => "إضافة"
                 ])
               </form>

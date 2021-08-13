@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateExchangesTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateExchangesTable extends Migration
      */
     public function up()
     {
-        Schema::create('exchanges', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('quantity');
-            $table->foreignId('basket_id')->constrained('baskets')->on('id')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->string('note');
+            $table->string('title')->nullable();
             $table->timestamps();
-        });
+            $table->softDeletes();
+ });
     }
 
     /**
@@ -30,6 +28,6 @@ class CreateExchangesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exchanges');
+        Schema::dropIfExists('roles');
     }
 }

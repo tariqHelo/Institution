@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Basket;
 use Illuminate\Http\Request;
+use App\Http\Requests\BasketRequest;
 
 class BasketController extends Controller
 {
@@ -37,8 +38,8 @@ class BasketController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(BasketRequest $request)
+    { 
         $basket = Basket::create( $request->all() );
         \Session::flash("msg", "s:تم إضافة السلة ($basket->name) بنجاح");
         return redirect()->route('basket.index');
@@ -77,7 +78,7 @@ class BasketController extends Controller
      * @param  \App\Models\Basket  $basket
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BasketRequest $request, $id)
     {
        $basket = Basket::find($id);
        $basket->update( $request->all());

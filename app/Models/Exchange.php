@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Exchange extends Model
 {
     use HasFactory;
+     protected $fillable=[
+         'name',
+         'quantity',
+         'note',
+         'basket_id'
+    ];
+
+    public function basket()
+    {
+        return $this->belongsTo(Basket::class);
+    }
 }

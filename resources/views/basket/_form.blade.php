@@ -28,15 +28,18 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="status" id="status-active" value="active" @if(old('status') == 'active') checked @endif>
                                 <label class="form-check-label" for="status-active">
-                                    تعمل 
+                                    قابل 
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="status" id="status-draft" value="draft" @if(old('status') == 'draft') checked @endif >
                                 <label class="form-check-label" for="status-draft">
-                                     تالفة
+                                     غير قابل
                                 </label>
                             </div>
+                            @error('status')
+                            <p class="text-danger">{{ $message }}</p>
+                          @enderror
                         </div>
                         
                     </div>

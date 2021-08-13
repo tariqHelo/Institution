@@ -9,10 +9,18 @@ class Basket extends Model
 {
     use HasFactory;
 
+    const STATUS_ACTIVE = 'active';
+    const STATUS_DRAFT = 'draft';
+    
     protected $fillable=[
          'name',
-         'qty',
+         'quantity',
          'price',
          'status'
     ];
+
+    public function total()
+    {
+        return $this->sum('quantity');
+    }
 }

@@ -23,7 +23,7 @@ use App\Http\Controllers\BasketController;
 
 Route::get('/', function () {
     return view('layouts.admin');
-});
+})->middleware(['auth']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
