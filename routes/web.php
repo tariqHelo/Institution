@@ -2,6 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Admin\PermissionsController;
+use App\Http\Controllers\Admin\RolesController;
+use App\Http\Controllers\Admin\UsersController;
+
+use App\Http\Controllers\ExchangeController;
+use App\Http\Controllers\BasketController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,5 +22,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.admin');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+/* Start Admin Route */
+// Permissions
+Route::resource('permissions', PermissionsController::class);
+// Roles
+Route::resource('roles', RolesController::class);
+// Users
+Route::resource('users', UsersController::class);
+Route::resource('dealers', DealersController::class);
+/* End Admin Route */
+Route::resource('exchange', ExchangeController::class);
+Route::resource('basket', BasketController::class);
+Route::get('/basket/delete/{id}', [BasketController::class , 'destroy'])->name('basket.delete');
