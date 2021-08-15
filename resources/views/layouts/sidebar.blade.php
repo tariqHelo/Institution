@@ -16,6 +16,7 @@
           <a href="#" class="d-block">Alexander Pierce</a>
         </div>
       </div>
+      
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -79,28 +80,13 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="" class="nav-link">
+          <li class="nav-item">
+            <a href="{{route('exchange.index')}}" class="nav-link">
               <i class="nav-icon fa fa-cube"></i>
               <p>
-               إدارة المصروفات           
-                <i class="fas fa-angle-left right"></i>
+                إدارة المصروفات
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('exchange.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>الصرف</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('exchange.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>الصرف لجهة أخري</p>
-                </a>
-              </li>
-            </ul>
           </li>
            <li class="nav-item">
             <a href="{{route('basket.index')}}" class="nav-link">
@@ -111,11 +97,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{route('beneficiaries.index')}}" class="nav-link">
               <i class="nav-icon fa fa-lightbulb"></i>
               <p>
-                البحث بإسم المستفيد
-                
+                المستفيدين                
               </p>
             </a>
           </li>

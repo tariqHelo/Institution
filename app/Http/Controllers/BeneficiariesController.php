@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Beneficiaries;
+use App\Imports\BeneficiariesImport;
+
+use Maatwebsite\Excel\Facades\Excel;
+
 use Illuminate\Http\Request;
 
 class BeneficiariesController extends Controller
@@ -13,8 +17,10 @@ class BeneficiariesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {  
+        $beneficiaries = Beneficiaries::all(); 
+        return view('beneficiaries.index')
+        ->withBeneficiaries($beneficiaries);
     }
 
     /**
@@ -34,9 +40,20 @@ class BeneficiariesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {  
+            Excel::import(new BeneficiariesImport, request()->file('file'));
+            \Session::flash("msg"," تم إضافة الملف بنجاح ");
+
+    //     Excel::import(new BeneficiariesImport($request->file));
+    //    try {
+    //        Excel::import(new BeneficiariesImport($request->file));
+    //        \Session::flash("msg"," تم إضافة الملف بنجاح ");
+    //    } catch (\Throwable $th) {
+    //        \Session::flash("msg","w: حدث خطأ اثناء عملية الادخال يرجى التأكد من صحة الملف");
+    //    }
+    //     return redirect()->back();
     }
+    
 
     /**
      * Display the specified resource.

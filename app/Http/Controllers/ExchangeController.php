@@ -55,16 +55,13 @@ class ExchangeController extends Controller
             }],
         ]);
         $basket = Basket::find($id);
-        $qty = $basket->quantity - $request->quantity;
         $exchange = Exchange::updateOrCreate([
             'name' => $request->post('name'),
             'quantity' => $request->post('quantity'),
             'note' => $request->post('note'),
             'basket_id' => $request->post('basket_id'),
-            ],
-            [
-            'baskets' => DB::raw('quantity +' . $qty),
         ]);
+        $basket->decrement('quantity', $request->quantity);
         \Session::flash("msg", "s:تم إضافة مستفيد ($exchange->name) بنجاح");
         return redirect()->route('exchange.index');
     }

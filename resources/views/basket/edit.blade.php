@@ -26,7 +26,7 @@
               </div>
             @endif
             <!-- general form elements -->
-            <div class="card card-dark">
+            <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title-rtl">تعديل سلة</h3>
               </div>

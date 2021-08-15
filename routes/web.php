@@ -10,6 +10,7 @@ use App\Http\Controllers\ExchangeController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\RepositoryController;
 use App\Http\Controllers\ReportsController;
+use App\Http\Controllers\BeneficiariesController;
 
 
 
@@ -48,5 +49,7 @@ Route::resource('basket', BasketController::class);
 
 Route::resource('repository', RepositoryController::class);
 Route::resource('reports', ReportsController::class);
+
+Route::resource('beneficiaries', BeneficiariesController::class);
 
 Route::get('/basket/delete/{id}', [BasketController::class , 'destroy'])->name('basket.delete');

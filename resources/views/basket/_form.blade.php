@@ -26,13 +26,13 @@
                         <label for="status">يستحق الصرف</label>
                         <div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="status-active" value="active" @if(old('status', $basket->active) == 'active') checked @endif>
+                                <input class="form-check-input" type="radio" name="status" id="status-active" value="active" @if(old('status',$basket->status) == 'active') checked @endif>
                                 <label class="form-check-label" for="status-active">
                                     قابل 
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="status-draft" value="draft" @if(old('status', $basket->draft) == 'draft') checked @endif>
+                                <input class="form-check-input" type="radio" name="status" id="status-draft" value="draft" @if(old('status',$basket->status) == 'draft') checked @endif>
                                 <label class="form-check-label" for="status-draft">
                                      غير قابل
                                 </label>

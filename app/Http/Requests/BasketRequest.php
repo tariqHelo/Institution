@@ -26,16 +26,16 @@ class BasketRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'qty' => 'required|int|min:0',
+            'quantity' => 'required|int|min:0',
             'price' => 'required|numeric|min:0',
-            'status' => 'required:' . Basket::STATUS_ACTIVE . ',' .Basket::STATUS_DRAFT,
+            'status' => 'required:' . Basket::STATUS_ACTIVE . ',' . Basket::STATUS_DRAFT,
         ];
     }
     public function messages()
     {
         return [
         'name.required' => 'يجب إدخال الإسم',
-        'qty.required' => 'يجب إدخال الكمية ',
+        'quantity.required' => 'يجب إدخال الكمية ',
         'price.required' => 'يجب إدخال السعر ',
         'status.required' => 'يجب إدخال حالة الصرف',
         ];

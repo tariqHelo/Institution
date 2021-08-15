@@ -20,11 +20,7 @@ class CreateBeneficiariesTable extends Migration
             $table->string('file_no');
             $table->string('phone');
             $table->string('calss');
-            $table->string('basket_name');
-            $table->string('name');
-            $table->string('name');
-
-             
+            $table->string('area');
             $table->timestamps();
         });
     }

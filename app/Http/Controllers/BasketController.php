@@ -65,7 +65,7 @@ class BasketController extends Controller
     public function edit($id)
     {   
         $basket = Basket::findOrFail($id);
-         return view('basket.create',[
+         return view('basket.edit',[
           'basket'=> $basket
          ]);
        
@@ -81,7 +81,7 @@ class BasketController extends Controller
     public function update(BasketRequest $request, $id)
     {
        $basket = Basket::find($id);
-       $basket->update( $request->all());
+       $basket->update($request->all());
        \Session::flash("msg", "s:تم تعديل السلة ($basket->name) بنجاح");
        return redirect()->route('basket.index');
     }

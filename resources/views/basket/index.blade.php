@@ -25,6 +25,7 @@
                   <th>#</th>
                   <th>إسم السلة</th>
                   <th>الكمية المتبقية</th>
+                  <th>الكمية المدخلة</th>
                   <th>الكمية المصروفة</th>
                   <th>السعر</th>
                   <th>الحالة</th>
@@ -37,6 +38,7 @@
                     <tr>
                         <th>{{$basket->id}}</th>
                         <th>{{$basket->name}}</th>
+                        <td>{{$basket->quantity}}</td>
                         <td>{{$basket->quantity}}</td>
                         <td>{{$basket->total()}}</td>
                         <td>{{$basket->price}}</td>
@@ -56,13 +58,14 @@
                 </tbody>
                 <tfoot>
                   <tr>
-                    <th>#</th>
-                    <th>إسم السلة</th>
-                    <th>الكمية المتبقية</th>
-                    <th>الكمية المصروفة</th>
-                    <th>السعر</th>
-                    <th>الحالة</th>
-                    <th>الإجراءات</th>
+                  <th>#</th>
+                  <th>إسم السلة</th>
+                  <th>الكمية المتبقية</th>
+                  <th>الكمية المدخلة</th>
+                  <th>الكمية المصروفة</th>
+                  <th>السعر</th>
+                  <th>الحالة</th>
+                  <th>الإجراءات</th>
                   </tr>
                 </tfoot>
               </table>

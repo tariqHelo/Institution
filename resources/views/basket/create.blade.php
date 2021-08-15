@@ -26,6 +26,7 @@
               <!-- form start -->
               <form  action="{{route('basket.store')}}" method="POST">
                 @csrf
+                
                  @include('basket._form', [
                     'button' => 'إضافة'
                 ])

@@ -36,7 +36,7 @@
                     <tr>
                         <th>{{$exchange->id}}</th>
                         <th>{{$exchange->name}}</th>
-                        <th>{{$exchange->basket->name}}</th>
+                        <th>{{$exchange->basket->name ?? ""}}</th>
                         <td>{{$exchange->quantity}}</td>
                         <td>{{$exchange->note}}</td>
                         	<td>   
