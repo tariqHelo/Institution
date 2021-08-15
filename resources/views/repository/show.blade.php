@@ -15,7 +15,7 @@
 
           <div class="card">
             <div class="card-header">
-               <a type="button" class="btn btn-primary" href="{{ route('repository.create') }}">إضافة <i class="fa fa-plus"></i> </a>
+               {{-- <a type="button" class="btn btn-primary" href="{{ route('repository.create') }}">إضافة <i class="fa fa-plus"></i> </a> --}}
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -23,22 +23,20 @@
                 <thead>
                   <tr>
                   <th>#</th>
-                  <th>إسم المستودع</th>
-                  {{-- <th> عدد السلال</th> --}}
+                  <th>إسم السلة</th>
+                  <th>الكمية</th>
                   <th>الإجراءات</th>
-
                   </tr>
                 </thead>
 
                 <tbody>
-                  @foreach($repositoreis as $repository)
+                  @foreach($baskets as $basket)
                     <tr>
-                        <th>{{$repository->id}}</th>
-                        <th>{{$repository->name}}</th>
-                        {{-- <td>{{$repository->basket_id->coun}}</td> --}}
+                        <th>{{$basket->id}}</th>
+                        <th>{{$basket->name}}</th>
+                        <td>{{$basket->quantity}}</td>
                         <td>   
-                              <a href="{{route('repository.edit' , $repository->id )}}" class="btn btn-primary btn-sm"><i class='fa fa-edit'></i></a>
-                              <a href="{{route('repository.show' , $repository->id )}}" class="btn btn-success btn-sm"><i class='fa fa-eye'></i></a>
+                              <a href="{{route('basket.edit' , $basket->id )}}" class="btn btn-primary btn-sm"><i class='fa fa-edit'></i></a>
                               <a href="" onclick='return confirm("Are you sure dude?")' class="btn btn-danger btn-sm"><i class='fa fa-trash'></i></a>
                         </td>
                     </tr>
@@ -46,11 +44,9 @@
                 </tbody>
                 <tfoot>
                   <tr>
-                  <th>#</th>
-                  <th>إسم المستودع</th>
-                  {{-- <th> عدد السلال</th> --}}
+                  <th>إسم السلة</th>
+                  <th>الكمية</th>
                   <th>الإجراءات</th>
-
                   </tr>
                 </tfoot>
               </table>

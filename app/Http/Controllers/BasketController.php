@@ -14,7 +14,7 @@ class BasketController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    { //dd(22);
         $baskets = Basket::all();
         return view('basket.index')
         ->with('baskets' , $baskets);
@@ -26,7 +26,7 @@ class BasketController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    { 
         return view('basket.create',[
             'basket' => new basket()
         ]);

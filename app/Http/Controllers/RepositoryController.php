@@ -15,9 +15,9 @@ class RepositoryController extends Controller
      */
     public function index()
     {
-         $baskets = Basket::all();
+         $repositoreis = Repository::all();
          return view('repository.index')
-         ->with('baskets' , $baskets);
+         ->with('repositoreis' , $repositoreis);
     }
 
     /**
@@ -26,8 +26,15 @@ class RepositoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    { 
+        
+        $baskets = Basket::pluck('name' , 'id');
+        return view('repository.create',[
+        'baskets'=> $baskets,
+        'basket' => new basket(),
+        'repository' => new repository()
+        ]);
+
     }
 
     /**
@@ -37,8 +44,11 @@ class RepositoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {  //dd($request->all());
+        $repository = Repository::create($request->all());
+        $repository->baskets()->sync($request->input('baskets', []));
+        \Session::flash("msg", "s:تم إضافة المستودع ($repository->name) بنجاح");
+        return redirect()->route('repository.index');
     }
 
     /**
@@ -47,9 +57,13 @@ class RepositoryController extends Controller
      * @param  \App\Models\Repository  $repository
      * @return \Illuminate\Http\Response
      */
-    public function show(Repository $repository)
+    public function show($id)
     {
-        //
+        $repository = Repository::find($id);
+        //$cities = City::where('id', '=', $country->id)->get();
+        $baskets= $repository->baskets;
+         return view('repository.show')
+         ->with('baskets' , $baskets);
     }
 
     /**
@@ -59,8 +73,14 @@ class RepositoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Repository $repository)
-    {
-        //
+    {   //dd($id);
+        $baskets = Basket::pluck('name' , 'id');
+        $repository->load('baskets');
+         return view('repository.edit',[
+         'basket' => new basket(),
+        'baskets'=> $baskets,
+         'repository' => $repository
+         ]);
     }
 
     /**

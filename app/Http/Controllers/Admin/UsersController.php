@@ -7,7 +7,9 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Employe;
 use Illuminate\Support\Facades\Hash;
+
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,6 +37,7 @@ class UsersController extends Controller
 
     public function store(StoreUserRequest $request)
     { 
+       
         $user->roles()->sync($request->input('roles', []));
         \Session::flash("msg", "s:تم إضافة المستخدم ($user->name) بنجاح");
         return redirect()->route('users.index');
