@@ -22,7 +22,7 @@
                 <div class="card-body">
                   <div class="row">
                      <div class="col-sm-10">
-                      <input type="file" name="file" class="form-control" id="inputEmail3" placeholder="Email">
+                      <input type="file" name="file" class="form-control" id="inputEmail3" placeholder="Email" required>
                     </div>
                   </div>
                 </div>
@@ -60,7 +60,7 @@
                         <td>{{$beneficiarie->area}}</td>
                         	<td>   
                               <a href="{{route('beneficiaries.edit' , $beneficiarie->id )}}" class="btn btn-primary btn-sm"><i class='fa fa-edit'></i></a>
-                              <a href="" onclick='return confirm("Are you sure dude?")' class="btn btn-danger btn-sm"><i class='fa fa-trash'></i></a>
+                              <a href="{{route('beneficiaries.destroy' , $beneficiarie->id )}}" onclick='return confirm("Are you sure dude?")' class="btn btn-danger btn-sm"><i class='fa fa-trash'></i></a>
                         </td>
                     </tr>
                   @endforeach

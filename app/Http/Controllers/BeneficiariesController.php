@@ -41,17 +41,13 @@ class BeneficiariesController extends Controller
      */
     public function store(Request $request)
     {  
+       try {
             Excel::import(new BeneficiariesImport, request()->file('file'));
-            \Session::flash("msg"," تم إضافة الملف بنجاح ");
-
-    //     Excel::import(new BeneficiariesImport($request->file));
-    //    try {
-    //        Excel::import(new BeneficiariesImport($request->file));
-    //        \Session::flash("msg"," تم إضافة الملف بنجاح ");
-    //    } catch (\Throwable $th) {
-    //        \Session::flash("msg","w: حدث خطأ اثناء عملية الادخال يرجى التأكد من صحة الملف");
-    //    }
-    //     return redirect()->back();
+           \Session::flash("msg"," تم إضافة الملف بنجاح ");
+       } catch (\Throwable $th) {
+           \Session::flash("msg","w: حدث خطأ اثناء عملية الادخال يرجى التأكد من صحة الملف");
+       }
+       return redirect()->back();
     }
     
 
@@ -72,9 +68,12 @@ class BeneficiariesController extends Controller
      * @param  \App\Models\Beneficiaries  $beneficiaries
      * @return \Illuminate\Http\Response
      */
-    public function edit(Beneficiaries $beneficiaries)
+    public function edit($id)
     {
-        //
+        $beneficiarie = Beneficiaries::findOrFail($id);
+        return view('beneficiaries.edit',[
+        'beneficiarie'=> $beneficiarie
+        ]);
     }
 
     /**
@@ -84,9 +83,12 @@ class BeneficiariesController extends Controller
      * @param  \App\Models\Beneficiaries  $beneficiaries
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Beneficiaries $beneficiaries)
-    {
-        //
+    public function update(Request $request, $id)
+    {   //dd($request->all());
+         $beneficiarie = Beneficiaries::find($id);
+         $beneficiarie->update($request->all());
+         \Session::flash("msg", "s:تم تعديل مستفيد ($beneficiarie->name) بنجاح");
+         return redirect()->route('beneficiaries.index');
     }
 
     /**
@@ -95,8 +97,12 @@ class BeneficiariesController extends Controller
      * @param  \App\Models\Beneficiaries  $beneficiaries
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Beneficiaries $beneficiaries)
+    public function destroy($id)
     {
-        //
+       $beneficiarie = Beneficiaries::find($id);
+       $beneficiarie->delete();
+       \Session::flash("msg", "w:تم حذف مستفيد ($beneficiarie->name) بنجاح");
+       return redirect()->route('beneficiaries.index');
+
     }
 }

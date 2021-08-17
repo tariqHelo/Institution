@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'جميع المصروفات')
+@section('title', ' جميع المستفيدي ')
 
 
 @section('breadcrumb')

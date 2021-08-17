@@ -51,5 +51,6 @@ Route::resource('repository', RepositoryController::class);
 Route::resource('reports', ReportsController::class);
 
 Route::resource('beneficiaries', BeneficiariesController::class);
+Route::get('beneficiaries/delete/{id}', [BeneficiariesController::class , 'destroy'])->name('beneficiaries.destroy');
 
 Route::get('/basket/delete/{id}', [BasketController::class , 'destroy'])->name('basket.delete');
