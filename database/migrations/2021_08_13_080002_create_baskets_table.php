@@ -16,9 +16,10 @@ class CreateBasketsTable extends Migration
         Schema::create('baskets', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('quantity');
             $table->integer('price');
-            
+            $table->integer('quantity');
+            $table->string('source');
+           // $table->foreignId('quantity_id')->constrained('quantities')->on('id')->cascadeOnUpdate()->cascadeOnDelete();
             $table->enum('status' , ['active', 'draft'])->default('draft');
             $table->timestamps();
         });

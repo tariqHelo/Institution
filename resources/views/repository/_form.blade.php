@@ -2,7 +2,7 @@
     <div class="card-body">
                   <div class="form-group">
                     <label> إسم المستودع  </label>
-                    <input type="string" class="form-control @error('name') is-invalid @enderror" name="name"  placeholder=" إسم المستودع" value="{{ old('name' , $repository->name) }}">
+                    <input type="string" class="form-control @error('name') is-invalid @enderror" name="name"  placeholder=" إسم المستودع" value="{{ old('name' , $repository->name) }}" required>
                       @error('name')
                         <p class="text-danger">{{ $message }}</p>
                       @enderror

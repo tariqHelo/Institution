@@ -11,6 +11,7 @@ use App\Http\Controllers\BasketController;
 use App\Http\Controllers\RepositoryController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\BeneficiariesController;
+use App\Http\Controllers\AnothorExchangeController;
 
 
 
@@ -27,11 +28,11 @@ use App\Http\Controllers\BeneficiariesController;
 
 Route::get('/', function () {
     return view('layouts.admin');
-})->middleware(['auth']);
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+// Route::get('/dashboard', function () {
+//        return view('layouts.admin');
+// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
@@ -45,9 +46,16 @@ Route::resource('users', UsersController::class);
 Route::resource('dealers', DealersController::class);
 /* End Admin Route */
 Route::resource('exchange', ExchangeController::class);
+Route::get('exchange/delete/{id}', [ExchangeController::class , 'destroy'])->name('exchange.delete');
+
 Route::resource('basket', BasketController::class);
 
+Route::resource('anothor', AnothorExchangeController::class);
+
+
 Route::resource('repository', RepositoryController::class);
+Route::get('repository/delete/{id}', [RepositoryController::class , 'destroy'])->name('repository.delete');
+
 Route::resource('reports', ReportsController::class);
 
 Route::resource('beneficiaries', BeneficiariesController::class);

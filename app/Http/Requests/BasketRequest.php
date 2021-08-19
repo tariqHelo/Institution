@@ -29,6 +29,7 @@ class BasketRequest extends FormRequest
             'quantity' => 'required|int|min:0',
             'price' => 'required|numeric|min:0',
             'status' => 'required:' . Basket::STATUS_ACTIVE . ',' . Basket::STATUS_DRAFT,
+            'source' => 'required|max:255',
         ];
     }
     public function messages()
@@ -38,6 +39,7 @@ class BasketRequest extends FormRequest
         'quantity.required' => 'يجب إدخال الكمية ',
         'price.required' => 'يجب إدخال السعر ',
         'status.required' => 'يجب إدخال حالة الصرف',
+        'source.required' => 'يجب إدخال مصدر السلة',
         ];
     }
 }

@@ -21,6 +21,13 @@
                         <p class="text-danger">{{ $message }}</p>
                       @enderror
                   </div>
+                  <div class="form-group">
+                    <label>مصدرها   </label>
+                    <input type="string" class="form-control @error('source') is-invalid @enderror" name="source"  placeholder="سعر السلة" value="{{ old('source', $basket->source) }}">
+                      @error('source')
+                        <p class="text-danger">{{ $message }}</p>
+                      @enderror
+                  </div>
             
                     <div class="form-group">
                         <label for="status">يستحق الصرف</label>

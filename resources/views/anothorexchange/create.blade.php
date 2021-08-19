@@ -2,10 +2,6 @@
 
 @section('title', '')
 
-@section('css')
- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>  
-@endsection
 
 @section('breadcrumb')
 {{-- <ol class="breadcrumb float-sm-right">
@@ -35,13 +31,4 @@
             </div>
             <!-- /.card -->
          </div>
-@endsection
-
-@section('script')
-<script>
-
-// $(".js-example-tags").select2({
-//   tags: true
-// });
-</script>
 @endsection

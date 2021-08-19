@@ -25,7 +25,7 @@ class ExchangeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
+            'beneficiarie_id' => 'required|max:255',
             'basket_id' => 'required', 'exists:baskets,id',
         ];
     }

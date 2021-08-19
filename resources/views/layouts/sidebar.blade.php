@@ -92,13 +92,13 @@
               <li class="nav-item">
                 <a href="{{route('exchange.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>صرف جهة أخرى</p>
+                  <p>صرف مستفيد</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="" class="nav-link">
+               <li class="nav-item">
+                <a href="{{route('anothor.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>صرف مستفيد</p>
+                  <p>صرف جهة أخرى</p>
                 </a>
               </li>
             </ul>
@@ -133,6 +133,15 @@
               <i class="nav-icon fa fa-id-card"></i>
               <p>
                التقارير 
+                
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('reports.index')}}" class="nav-link">
+              <i class="nav-icon fa fa-id-card"></i>
+              <p>
+               المرفقات 
                 
               </p>
             </a>

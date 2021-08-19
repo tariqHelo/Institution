@@ -39,7 +39,7 @@
                         <td>   
                               <a href="{{route('repository.edit' , $repository->id )}}" class="btn btn-primary btn-sm"><i class='fa fa-edit'></i></a>
                               <a href="{{route('repository.show' , $repository->id )}}" class="btn btn-success btn-sm"><i class='fa fa-eye'></i></a>
-                              <a href="" onclick='return confirm("Are you sure dude?")' class="btn btn-danger btn-sm"><i class='fa fa-trash'></i></a>
+                              <a href="{{route('repository.delete' , $repository->id )}}" onclick='return confirm("Are you sure dude?")' class="btn btn-danger btn-sm"><i class='fa fa-trash'></i></a>
                         </td>
                     </tr>
                   @endforeach

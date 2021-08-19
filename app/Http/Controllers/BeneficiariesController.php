@@ -69,7 +69,7 @@ class BeneficiariesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {   //dd($id);
         $beneficiarie = Beneficiaries::findOrFail($id);
         return view('beneficiaries.edit',[
         'beneficiarie'=> $beneficiarie

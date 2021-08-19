@@ -39,7 +39,7 @@
                         <th>{{$basket->id}}</th>
                         <th>{{$basket->name}}</th>
                         <td>{{$basket->quantity}}</td>
-                        <td>{{$basket->quantity}}</td>
+                        <td>{{$basket->quantity + $basket->total() }}</td>
                         <td>{{$basket->total()}}</td>
                         <td>{{$basket->price}}</td>
                           <td>

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Beneficiaries;
 
 use App\Models\Exchange;
 use Illuminate\Http\Request;
@@ -29,9 +30,13 @@ class ExchangeController extends Controller
      */
     public function create()
     { 
-        $baskets = Basket::pluck('name' , 'id');
+        $baskets = Basket::where('status' , '=' , 'active')->pluck('name' , 'id');
+        $beneficiaries = Beneficiaries::pluck('name' , 'id');
+        //dd($beneficiaries);
         return view('exchange.create',[
-          'baskets'=> $baskets
+          'baskets'=> $baskets,
+          'exchange'=> new exchange(),
+          'beneficiaries'=> $beneficiaries
         ]);
     }
 
@@ -42,7 +47,7 @@ class ExchangeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ExchangeRequest $request)
-    {   
+    {  //dd($request->all()); 
         $id = request()->input('basket_id');
         
         $request->validate([
@@ -56,13 +61,13 @@ class ExchangeController extends Controller
         ]);
         $basket = Basket::find($id);
         $exchange = Exchange::updateOrCreate([
-            'name' => $request->post('name'),
+            'beneficiarie_id' => $request->post('beneficiarie_id'),
             'quantity' => $request->post('quantity'),
             'note' => $request->post('note'),
             'basket_id' => $request->post('basket_id'),
         ]);
         $basket->decrement('quantity', $request->quantity);
-        \Session::flash("msg", "s:تم إضافة مستفيد ($exchange->name) بنجاح");
+        \Session::flash("msg", "s:تم إضافة مستفيد بنجاح");
         return redirect()->route('exchange.index');
     }
 
@@ -83,9 +88,16 @@ class ExchangeController extends Controller
      * @param  \App\Models\Exchange  $exchange
      * @return \Illuminate\Http\Response
      */
-    public function edit(Exchange $exchange)
-    {
-        //
+    public function edit($id)
+    {    //dd($id);
+        $baskets = Basket::where('status' , '=' , 'active')->pluck('name' , 'id');
+        $exchange = Exchange::findOrFail($id);
+        $beneficiaries = Beneficiaries::pluck('name' , 'id');
+        return view('exchange.edit',[
+        'exchange'=> $exchange,
+        'baskets'=> $baskets,
+        'beneficiaries'=> $beneficiaries
+        ]);
     }
 
     /**
@@ -97,7 +109,27 @@ class ExchangeController extends Controller
      */
     public function update(Request $request, Exchange $exchange)
     {
-        //
+        $id = request()->input('basket_id');
+        
+        $request->validate([
+            'quantity' => ['int', 'min:1', function($attr, $value, $fail) {
+                $id = request()->input('basket_id');
+                $basket = Basket::find($id);
+                if ($value > $basket->quantity) {
+                    $fail(__('الكمية المطلوبة أكبر من القيمة المخزنة'));
+                }
+            }],
+        ]);
+        $basket = Basket::find($id);
+        $exchange = Exchange::updateOrCreate([
+            'beneficiarie_id' => $request->post('beneficiarie_id'),
+            'quantity' => $request->post('quantity'),
+            'note' => $request->post('note'),
+            'basket_id' => $request->post('basket_id'),
+        ]);
+        $basket->decrement('quantity', $request->quantity);
+        \Session::flash("msg", "s:تم إضافة مستفيد بنجاح");
+        return redirect()->route('exchange.index');
     }
 
     /**
@@ -106,8 +138,11 @@ class ExchangeController extends Controller
      * @param  \App\Models\Exchange  $exchange
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Exchange $exchange)
+    public function destroy($id)
     {
-        //
+        $exchange = Exchange::find($id);
+        $exchange->delete();
+        \Session::flash("msg", "w:تم حذف مستفيد  بنجاح");
+        return redirect()->route('beneficiaries.index');
     }
 }

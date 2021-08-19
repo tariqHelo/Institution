@@ -90,9 +90,13 @@ class RepositoryController extends Controller
      * @param  \App\Models\Repository  $repository
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Repository $repository)
-    {
-        //
+    public function update(Request $request,$id)
+    {   
+        $repository=Repository::find($id);
+        $repository->update($request->all());
+        $repository->baskets()->sync($request->input('baskets', []));
+        \Session::flash("msg", "s:تم تعديل المستودع ($repository->name) بنجاح");
+        return redirect()->route('repository.index');
     }
 
     /**
@@ -101,8 +105,11 @@ class RepositoryController extends Controller
      * @param  \App\Models\Repository  $repository
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Repository $repository)
+    public function destroy($id)
     {
-        //
+        $repository=Repository::find($id);
+         $repository->delete();
+         \Session::flash("msg", "w:تم حذف مستودع($repository->name)بنجاح");
+         return redirect()->route('repository.index');
     }
 }

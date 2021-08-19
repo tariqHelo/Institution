@@ -9,11 +9,16 @@ class Exchange extends Model
 {
     use HasFactory;
      protected $fillable=[
-         'name',
+        'beneficiarie_id',
          'quantity',
          'note',
          'basket_id'
     ];
+
+    public function beneficiarie()
+    {
+        return $this->belongsTo(Beneficiaries::class);
+    }
 
     public function basket()
     {

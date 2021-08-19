@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', ' جميع المستفيدين ')
+@section('title', ' جميع المستفيدي ')
 
 
 @section('breadcrumb')
@@ -35,13 +35,13 @@
                   @foreach($exchanges as $exchange)
                     <tr>
                         <th>{{$exchange->id}}</th>
-                        <th>{{$exchange->beneficiarie->name}}</th>
+                        <th>{{$exchange->name}}</th>
                         <th>{{$exchange->basket->name ?? ""}}</th>
                         <td>{{$exchange->quantity}}</td>
                         <td>{{$exchange->note}}</td>
                         	<td>   
                               <a href="{{route('exchange.edit' , $exchange->id )}}" class="btn btn-primary btn-sm"><i class='fa fa-edit'></i></a>
-                              <a href="{{route('exchange.delete' , $exchange->id )}}" onclick='return confirm("Are you sure dude?")' class="btn btn-danger btn-sm"><i class='fa fa-trash'></i></a>
+                              <a href="" onclick='return confirm("Are you sure dude?")' class="btn btn-danger btn-sm"><i class='fa fa-trash'></i></a>
                         </td>
                     </tr>
                   @endforeach

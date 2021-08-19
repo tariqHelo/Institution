@@ -16,17 +16,15 @@ class Basket extends Model
          'name',
          'quantity',
          'price',
-         'status'
+         'status',
+         'beneficiarie_id',
+         'source'
     ];
-
+    public function exchange(){
+      return $this->hasOne(Exchange::class);
+    }
     public function total()
     { 
-      //  $q = User::select('users*', 'analytics.*', DB::raw('SUM(analytics.revenue) As revenue'))
-      //    ->leftJoin('analytics', 'analytics.user_id', '=', 'users.id')
-      //    ->get();
-      //   //return $this->sum('quantity');
-
-     return DB::table("exchanges")->where('id')->get()->sum("quantity");
-      //  return $this->where('basket_id')->sum('quantity');
+     return $this->exchange()->get()->sum("quantity");
     }
 }
