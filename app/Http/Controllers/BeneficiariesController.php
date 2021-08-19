@@ -41,9 +41,15 @@ class BeneficiariesController extends Controller
      */
     public function store(Request $request)
     {  
+        // $this->validate($request, [
+        //     'select_file'  => 'required|mimes:xls,xlsx'
+        // ],
+        // [
+        //     'select_file.required' => __('يرجي إدخال الملف '),
+        // ]);
        try {
             Excel::import(new BeneficiariesImport, request()->file('file'));
-           \Session::flash("msg"," تم إضافة الملف بنجاح ");
+           \Session::flash("msg","s: تم إضافة الملف بنجاح ");
        } catch (\Throwable $th) {
            \Session::flash("msg","w: حدث خطأ اثناء عملية الادخال يرجى التأكد من صحة الملف");
        }

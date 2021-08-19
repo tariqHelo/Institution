@@ -16,7 +16,6 @@ class BeneficiariesImport implements ToModel
     { 
 
         //DB::table('beneficiaries')->truncate();
-
         foreach($row as $key => $value)
             {
                 if($row[1] == null):

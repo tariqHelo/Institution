@@ -7,12 +7,9 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Role;
 use App\Models\User;
-use App\Models\Employe;
-use Illuminate\Support\Facades\Hash;
-
 use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
@@ -31,13 +28,23 @@ class UsersController extends Controller
         return view('admin.users.create',[
             'roles' => $roles,
             'user' => new User(),
-            'employe' => new Employe(),
         ]);
     }
 
-    public function store(StoreUserRequest $request)
+    public function store(Request $request)
     { 
-       
+        //$user = User::create($request->all());
+         $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => ['required', 'confirmed'],
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => \Hash::make($request->password),
+        ]);
         $user->roles()->sync($request->input('roles', []));
         \Session::flash("msg", "s:تم إضافة المستخدم ($user->name) بنجاح");
         return redirect()->route('users.index');

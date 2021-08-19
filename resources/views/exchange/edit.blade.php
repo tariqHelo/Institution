@@ -20,16 +20,17 @@
 <div class="col-md-12">
               @include('shared.msg')
             <!-- general form elements -->
-            <div class="card card-success">
+            <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title-rtl">إضافة بيانات المستفيد</h3>
+                <h3 class="card-title-rtl">تعديل بيانات المستفيد</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="{{route('exchange.store')}}" method="POST">
+              <form role="form" action="{{route('exchange.update' , $exchange->id)}}" method="POST">
                 @csrf
+                @method('PATCH')
                 @include('exchange._form',[
-                  'button' => "إضافة"
+                  'button' => "تعديل"
                 ])
               </form>
             </div>

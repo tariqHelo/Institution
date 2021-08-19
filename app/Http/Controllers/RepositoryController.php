@@ -78,7 +78,7 @@ class RepositoryController extends Controller
         $repository->load('baskets');
          return view('repository.edit',[
          'basket' => new basket(),
-        'baskets'=> $baskets,
+         'baskets'=> $baskets,
          'repository' => $repository
          ]);
     }

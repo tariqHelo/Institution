@@ -43,7 +43,6 @@ Route::resource('permissions', PermissionsController::class);
 Route::resource('roles', RolesController::class);
 // Users
 Route::resource('users', UsersController::class);
-Route::resource('dealers', DealersController::class);
 /* End Admin Route */
 Route::resource('exchange', ExchangeController::class);
 Route::get('exchange/delete/{id}', [ExchangeController::class , 'destroy'])->name('exchange.delete');

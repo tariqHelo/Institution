@@ -36,7 +36,7 @@
                   </div>
                   <div class="form-group">
                     <label>ملاحظات </label>
-                    <input type="text" class="form-control" value="{{ old('note') }}" name="note" placeholder="ملاحظات ...">
+                    <input type="text" class="form-control" value="{{ old('note', $exchange->note) }}" name="note" placeholder="ملاحظات ...">
                      {{-- @error('note')
                         <p class="text-danger">{{ $message }}</p>
                       @enderror --}}

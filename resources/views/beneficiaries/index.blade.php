@@ -14,7 +14,7 @@
         @include('shared.msg')
 
           <div class="card">
-            <form action="{{route('beneficiaries.store')}}" method="POST" enctype="multipart/form-data" class="card card-danger">
+            <form action="{{route('beneficiaries.store')}}" method="POST" enctype="multipart/form-data" class="card card-primary">
               @csrf
                 <div class="card-header">
                   <h3 class="card-title-rtl">تحميل ملف الإكسل</h3>
@@ -22,7 +22,7 @@
                 <div class="card-body">
                   <div class="row">
                      <div class="col-sm-10">
-                      <input type="file" name="file" class="form-control" id="inputEmail3" placeholder="Email" required>
+                      <input type="file" name="file" class="form-control" id="inputEmail3" placeholder="Email">
                     </div>
                   </div>
                 </div>

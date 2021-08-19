@@ -109,6 +109,7 @@ class ExchangeController extends Controller
      */
     public function update(Request $request, Exchange $exchange)
     {
+        
         $id = request()->input('basket_id');
         
         $request->validate([
@@ -121,14 +122,14 @@ class ExchangeController extends Controller
             }],
         ]);
         $basket = Basket::find($id);
-        $exchange = Exchange::updateOrCreate([
+        $exchange-updaate([
             'beneficiarie_id' => $request->post('beneficiarie_id'),
             'quantity' => $request->post('quantity'),
             'note' => $request->post('note'),
             'basket_id' => $request->post('basket_id'),
         ]);
         $basket->decrement('quantity', $request->quantity);
-        \Session::flash("msg", "s:تم إضافة مستفيد بنجاح");
+        \Session::flash("msg", "s:تم تعديل المستفيد بنجاح");
         return redirect()->route('exchange.index');
     }
 

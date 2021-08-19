@@ -24,18 +24,17 @@
                   <tr>
                   <th>#</th>
                   <th>إسم المستودع</th>
-                  {{-- <th> عدد السلال</th> --}}
                   <th>الإجراءات</th>
 
                   </tr>
                 </thead>
 
                 <tbody>
+                  
                   @foreach($repositoreis as $repository)
                     <tr>
                         <th>{{$repository->id}}</th>
                         <th>{{$repository->name}}</th>
-                        {{-- <td>{{$repository->basket_id->coun}}</td> --}}
                         <td>   
                               <a href="{{route('repository.edit' , $repository->id )}}" class="btn btn-primary btn-sm"><i class='fa fa-edit'></i></a>
                               <a href="{{route('repository.show' , $repository->id )}}" class="btn btn-success btn-sm"><i class='fa fa-eye'></i></a>
