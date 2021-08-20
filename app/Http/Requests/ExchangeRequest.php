@@ -29,4 +29,13 @@ class ExchangeRequest extends FormRequest
             'basket_id' => 'required', 'exists:baskets,id',
         ];
     }
+    public function messages()
+    {
+        return [
+        'beneficiarie_id.required' => 'يرجي إدخال إسم المستفيد',
+        'basket_id.required' => 'يرجي إختيار السلة ',
+        ];
+    }
+
+    
 }

@@ -32,7 +32,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form  action="{{route('basket.update' , $basket->id)}}" method="POST">
+              <form  action="{{route('basket.update' , $basket->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                  @include('basket._form', [

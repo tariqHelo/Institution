@@ -26,6 +26,7 @@
                     <th>الإسم</th>
                     <th>إسم السلة</th>
                     <th>الكمية المصروفة</th>
+                    <th>تاريخ الصرف</th>
                     <th>ملاحظات</th>
                     <th>الإجراءات</th>
                   </tr>
@@ -38,6 +39,7 @@
                         <th>{{$exchange->beneficiarie->name ?? "محذوف"}}</th>
                         <th>{{$exchange->basket->name ?? "محذوف"}}</th>
                         <td>{{$exchange->quantity ?? ""}}</td>
+                        <td>{{$exchange->created_at ?? ""}}</td>
                         <td>{{$exchange->note ?? ""}}</td>
                         	<td>   
                               <a href="{{route('exchange.edit' , $exchange->id )}}" class="btn btn-primary btn-sm"><i class='fa fa-edit'></i></a>
@@ -52,6 +54,7 @@
                     <th>الإسم</th>
                     <th>إسم السلة</th>
                     <th>الكمية المصروفة</th>
+                    <th>تاريخ الصرف</th>
                     <th>ملاحظات</th>
                     <th>الإجراءات</th>
                   </tr>

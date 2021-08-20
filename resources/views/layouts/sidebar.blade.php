@@ -137,7 +137,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="{{route('reports.index')}}" class="nav-link">
               <i class="nav-icon fa fa-id-card"></i>
               <p>
@@ -145,7 +145,7 @@
                 
               </p>
             </a>
-          </li>
+          </li> --}}
           {{-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>

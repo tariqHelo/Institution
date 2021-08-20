@@ -23,10 +23,20 @@
                   </div>
                   <div class="form-group">
                     <label>مصدرها   </label>
-                    <input type="string" class="form-control @error('source') is-invalid @enderror" name="source"  placeholder="سعر السلة" value="{{ old('source', $basket->source) }}">
+                    <input type="string" class="form-control @error('source') is-invalid @enderror" name="source"  placeholder="مصدرها" value="{{ old('source', $basket->source) }}">
                       @error('source')
                         <p class="text-danger">{{ $message }}</p>
                       @enderror
+                  </div>
+                  <div class="form-group">
+                    <label>المرفقات   </label>
+                    <input type="file" class="form-control @error('file') is-invalid @enderror" name="file"  placeholder="المرفقات" value="{{ old('file', $basket->file) }}">
+                      @error('file')
+                        <p class="text-danger">{{ $message }}</p>
+                      @enderror
+                      {{-- @if($basket->file)
+                        <img src="{{asset("/uploads".$basket->file)}}" width='240' class='img-thumbnail'>
+                      @endif --}}
                   </div>
             
                     <div class="form-group">

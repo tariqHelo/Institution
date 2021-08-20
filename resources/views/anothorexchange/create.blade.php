@@ -2,6 +2,10 @@
 
 @section('title', '')
 
+@section('css')
+ <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>  
+@endsection
 
 @section('breadcrumb')
 {{-- <ol class="breadcrumb float-sm-right">
@@ -22,13 +26,22 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="{{route('exchange.store')}}" method="POST">
+              <form role="form" action="{{route('anothor.store')}}" method="POST">
                 @csrf
-                @include('exchange._form',[
+                @include('anothorexchange._form',[
                   'button' => "إضافة"
                 ])
               </form>
             </div>
             <!-- /.card -->
          </div>
+@endsection
+
+@section('script')
+<script>
+
+// $(".js-example-tags").select2({
+//   tags: true
+// });
+</script>
 @endsection

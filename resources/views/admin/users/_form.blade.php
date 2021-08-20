@@ -51,3 +51,4 @@
                    <button type="submit" class="btn btn-primary">{{$button}}</button>
                     <a href="{{route('users.index')}}" class="btn btn-danger" type="button"> إلغاء</a>
                 </div>
+   </div>             

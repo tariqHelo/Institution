@@ -17,14 +17,29 @@ class Basket extends Model
          'quantity',
          'price',
          'status',
-         'beneficiarie_id',
-         'source'
+         'source',
+         'file'
     ];
+
     public function exchange(){
       return $this->hasOne(Exchange::class);
     }
-    public function total()
+
+    public function anothor(){
+      return $this->hasOne(AnothorExchange::class);
+    }
+    public function ex()
     { 
      return $this->exchange()->get()->sum("quantity");
     }
+    public function as()
+    { 
+     return $this->anothor()->get()->sum("quantity");
+    }
+    public function total()
+    {
+      return $this->ex()+ $this->as();
+
+    }
+
 }

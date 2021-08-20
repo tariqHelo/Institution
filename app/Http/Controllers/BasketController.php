@@ -39,8 +39,19 @@ class BasketController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(BasketRequest $request)
-    { 
-        $basket = Basket::create( $request->all() );
+    {   
+       // dd($request->all());
+        $file = $request->file('file'); // UplodedFile Obje
+
+        $basket = Basket::create([
+            'file' => $file->store('/', ['disk' => 'uploads']),
+            'name' => $request->post('name'),
+            'price' => $request->post('price'),
+            'quantity' => $request->post('quantity'),
+            //'beneficiarie_id' => $request->post('beneficiarie_id'),
+            'source' => $request->post('source'),
+            'status' => $request->post('status', 'active'), 
+        ]);
         \Session::flash("msg", "s:تم إضافة السلة ($basket->name) بنجاح");
         return redirect()->route('basket.index');
     }
@@ -96,6 +107,7 @@ class BasketController extends Controller
     {
        $basket = Basket::findOrFail($id);
        $basket->delete();
+       \Storage::disk('uploads')->delete($basket->file);
        \Session::flash("msg", "w:تم حذف سلة ($basket->name) بنجاح");
        return redirect()->route('basket.index');
     }

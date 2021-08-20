@@ -24,7 +24,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form  action="{{route('basket.store')}}" method="POST">
+              <form  action="{{route('basket.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 
                  @include('basket._form', [

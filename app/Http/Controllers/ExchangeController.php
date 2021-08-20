@@ -47,18 +47,25 @@ class ExchangeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ExchangeRequest $request)
-    {  //dd($request->all()); 
+    {  
+        //dd($request->all()); 
+      //  الاسم- الهوية- العنوان- الكميه - ملاحظات
         $id = request()->input('basket_id');
+        
         
         $request->validate([
             'quantity' => ['int', 'min:1', function($attr, $value, $fail) {
                 $id = request()->input('basket_id');
                 $basket = Basket::find($id);
+               // dd($basket);
                 if ($value > $basket->quantity) {
                     $fail(__('الكمية المطلوبة أكبر من القيمة المخزنة'));
                 }
             }],
         ]);
+
+        
+
         $basket = Basket::find($id);
         $exchange = Exchange::updateOrCreate([
             'beneficiarie_id' => $request->post('beneficiarie_id'),
@@ -144,6 +151,6 @@ class ExchangeController extends Controller
         $exchange = Exchange::find($id);
         $exchange->delete();
         \Session::flash("msg", "w:تم حذف مستفيد  بنجاح");
-        return redirect()->route('beneficiaries.index');
+        return redirect()->route('exchange.index');
     }
 }

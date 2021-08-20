@@ -19,6 +19,7 @@ class CreateBasketsTable extends Migration
             $table->integer('price');
             $table->integer('quantity');
             $table->string('source');
+            $table->string('file');
            // $table->foreignId('quantity_id')->constrained('quantities')->on('id')->cascadeOnUpdate()->cascadeOnDelete();
             $table->enum('status' , ['active', 'draft'])->default('draft');
             $table->timestamps();

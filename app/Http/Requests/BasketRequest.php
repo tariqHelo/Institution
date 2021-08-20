@@ -30,6 +30,7 @@ class BasketRequest extends FormRequest
             'price' => 'required|numeric|min:0',
             'status' => 'required:' . Basket::STATUS_ACTIVE . ',' . Basket::STATUS_DRAFT,
             'source' => 'required|max:255',
+             "file" => "required|mimes:pdf|max:10000"
         ];
     }
     public function messages()
@@ -40,6 +41,8 @@ class BasketRequest extends FormRequest
         'price.required' => 'يجب إدخال السعر ',
         'status.required' => 'يجب إدخال حالة الصرف',
         'source.required' => 'يجب إدخال مصدر السلة',
+        'file.required' => 'يجب إدخال الملف ',
+
         ];
     }
 }

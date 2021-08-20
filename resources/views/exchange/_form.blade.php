@@ -33,6 +33,9 @@
                         <option value="{{ $id }}" {{ (( old('basket_id' , $exchange->basket_id))) ? 'selected' : '' }}>{{ $basket }}</option>
                         @endforeach
                     </select>
+                    @error('basket_id')
+                        <p class="text-danger">{{ $message }}</p>
+                      @enderror
                   </div>
                   <div class="form-group">
                     <label>ملاحظات </label>

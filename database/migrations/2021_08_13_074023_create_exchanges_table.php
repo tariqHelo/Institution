@@ -17,8 +17,8 @@ class CreateExchangesTable extends Migration
             $table->id();
            // $table->string('name');
             $table->integer('quantity');
-            $table->foreignId('basket_id')->constrained('baskets')->on('id')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('beneficiarie_id')->constrained('beneficiaries')->on('id')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('basket_id')->constrained('baskets')->on('id')->restrictOnDelete();
+            $table->foreignId('beneficiarie_id')->constrained('beneficiaries')->on('id')->restrictOnDelete();
             $table->string('note');
             $table->timestamps();
         });

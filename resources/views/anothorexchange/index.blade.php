@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', ' جميع المستفيدي ')
+@section('title', ' جميع المستفيدين لجهة أخري ')
 
 
 @section('breadcrumb')
@@ -15,7 +15,7 @@
 
           <div class="card">
             <div class="card-header">
-               <a type="button" class="btn btn-primary" href="{{ route('exchange.create') }}">إضافة <i class="fa fa-plus"></i> </a>
+               <a type="button" class="btn btn-primary" href="{{ route('anothor.create') }}">إضافة <i class="fa fa-plus"></i> </a>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -24,23 +24,29 @@
                   <tr>
                     <th>#</th>
                     <th>الإسم</th>
+                    <th>رقم الهوية</th>
+                    <th>العنوان</th>
                     <th>إسم السلة</th>
-                    <th>الكمية المصروفة</th>
+                    <th>الكمية </th>
+                     <th>تاريخ الصرف</th>
                     <th>ملاحظات</th>
                     <th>الإجراءات</th>
                   </tr>
                 </thead>
 
                 <tbody>
-                  @foreach($exchanges as $exchange)
+                  @foreach($anothors as $anothor)
                     <tr>
-                        <th>{{$exchange->id}}</th>
-                        <th>{{$exchange->name}}</th>
-                        <th>{{$exchange->basket->name ?? ""}}</th>
-                        <td>{{$exchange->quantity}}</td>
-                        <td>{{$exchange->note}}</td>
+                        <th>{{$anothor->id ?? ""}}</th>
+                        <th>{{$anothor->name ?? "محذوف"}}</th>
+                        <td>{{$anothor->id_number ?? "محذوف"}}</th>
+                        <td>{{$anothor->address ?? "محذوف"}}</th>
+                        <td>{{$anothor->basket->name ?? ""}}</td>
+                        <td width="5%">{{$anothor->quantity ?? ""}}</td>
+                        <td>{{$anothor->created_at ?? ""}}</td>
+                        <td>{{$anothor->note ?? ""}}</td>
                         	<td>   
-                              <a href="{{route('exchange.edit' , $exchange->id )}}" class="btn btn-primary btn-sm"><i class='fa fa-edit'></i></a>
+                              <a href="{{route('anothor.edit' , $anothor->id )}}" class="btn btn-primary btn-sm"><i class='fa fa-edit'></i></a>
                               <a href="" onclick='return confirm("Are you sure dude?")' class="btn btn-danger btn-sm"><i class='fa fa-trash'></i></a>
                         </td>
                     </tr>
@@ -50,8 +56,11 @@
                   <tr>
                     <th>#</th>
                     <th>الإسم</th>
+                    <th>رقم الهوية</th>
+                    <th>العنوان</th>
                     <th>إسم السلة</th>
-                    <th>الكمية المصروفة</th>
+                    <th>الكمية </th>
+                     <th>تاريخ الصرف</th>
                     <th>ملاحظات</th>
                     <th>الإجراءات</th>
                   </tr>

@@ -39,8 +39,8 @@
                         <th>{{$basket->id}}</th>
                         <th>{{$basket->name}}</th>
                         <td>{{$basket->quantity}}</td>
-                        <td>{{$basket->quantity + $basket->total() }}</td>
-                        <td>{{$basket->total()}}</td>
+                        <td>{{$basket->quantity + $basket->total()  }}</td>
+                        <td>{{$basket->total() }}</td>
                         <td>{{$basket->price}}</td>
                           <td>
                               @if($basket->status=='active')
@@ -51,6 +51,7 @@
                           </td>
                         	<td>   
                               <a href="{{route('basket.edit' , $basket->id )}}" class="btn btn-primary btn-sm"><i class='fa fa-edit'></i></a>
+                          <a href="/uploads/{{ $basket->file }}" target="_blank" class="btn btn-success btn-sm"><i class='fa fa-eye'></i></a>
                               <a href="{{route('basket.delete' , $basket->id )}}" onclick='return confirm("Are you sure dude?")' class="btn btn-danger btn-sm"><i class='fa fa-trash'></i></a>
                         </td>
                     </tr>

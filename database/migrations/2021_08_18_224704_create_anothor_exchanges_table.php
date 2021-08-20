@@ -15,6 +15,12 @@ class CreateAnothorExchangesTable extends Migration
     {
         Schema::create('anothor_exchanges', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('id_number');
+            $table->longText('note');
+            $table->integer('quantity');
+            $table->string('address');
+            $table->foreignId('basket_id')->constrained('baskets')->on('id')->restrictOnDelete();
             $table->timestamps();
         });
     }

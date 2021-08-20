@@ -50,6 +50,7 @@ Route::get('exchange/delete/{id}', [ExchangeController::class , 'destroy'])->nam
 Route::resource('basket', BasketController::class);
 
 Route::resource('anothor', AnothorExchangeController::class);
+Route::get('anothor/delete/{id}', [AnothorExchangeController::class , 'destroy'])->name('ss');
 
 
 Route::resource('repository', RepositoryController::class);
@@ -58,6 +59,6 @@ Route::get('repository/delete/{id}', [RepositoryController::class , 'destroy'])-
 Route::resource('reports', ReportsController::class);
 
 Route::resource('beneficiaries', BeneficiariesController::class);
-Route::get('beneficiaries/delete/{id}', [BeneficiariesController::class , 'destroy'])->name('beneficiaries.destroy');
+//Route::get('beneficiaries/delete/{id}', [BeneficiariesController::class , 'destroy'])->name('beneficiaries.destroy');
 
 Route::get('/basket/delete/{id}', [BasketController::class , 'destroy'])->name('basket.delete');
