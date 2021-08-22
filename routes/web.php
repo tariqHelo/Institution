@@ -25,6 +25,8 @@ use App\Http\Controllers\AnothorExchangeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::resource("anothor","AnothorExchangeController")->name('q');
+//Route::get('/exchange/search', [ExchangeController::class , 'search']);
 
 Route::get('/', function () {
     return view('layouts.admin');
@@ -50,7 +52,7 @@ Route::get('exchange/delete/{id}', [ExchangeController::class , 'destroy'])->nam
 Route::resource('basket', BasketController::class);
 
 Route::resource('anothor', AnothorExchangeController::class);
-Route::get('anothor/delete/{id}', [AnothorExchangeController::class , 'destroy'])->name('ss');
+Route::get('anothor/delete/{id}', [AnothorExchangeController::class ,'destroy'])->name('anothor.delete');
 
 
 Route::resource('repository', RepositoryController::class);

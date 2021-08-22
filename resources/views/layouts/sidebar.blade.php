@@ -51,6 +51,7 @@
               </li>
             </ul>
           </li> --}}
+         @can('user_management_access')
            <li class="nav-item has-treeview">
             <a href="" class="nav-link">
               <i class="nav-icon fa fa-lock"></i>
@@ -80,6 +81,8 @@
               </li>
             </ul>
           </li>
+         @endcan 
+        @can('expenses')
           <li class="nav-item has-treeview">
             <a href="" class="nav-link">
               <i class="nav-icon fa fa-cube"></i>
@@ -102,7 +105,9 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> 
+         @endcan
+         @can('baskets')
            <li class="nav-item">
             <a href="{{route('basket.index')}}" class="nav-link">
               <i class="nav-icon fa fa-desktop"></i>
@@ -111,7 +116,9 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+         @endcan
+        @can('beneficiaries')
+           <li class="nav-item">
             <a href="{{route('beneficiaries.index')}}" class="nav-link">
               <i class="nav-icon fa fa-lightbulb"></i>
               <p>
@@ -119,7 +126,9 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+        @endcan
+        @can('repository')
+           <li class="nav-item">
             <a href="{{route('repository.index')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
@@ -128,7 +137,9 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+        @endcan
+        @can('reports')
+           <li class="nav-item">
             <a href="{{route('reports.index')}}" class="nav-link">
               <i class="nav-icon fa fa-id-card"></i>
               <p>
@@ -137,6 +148,7 @@
               </p>
             </a>
           </li>
+        @endcan
           {{-- <li class="nav-item">
             <a href="{{route('reports.index')}}" class="nav-link">
               <i class="nav-icon fa fa-id-card"></i>

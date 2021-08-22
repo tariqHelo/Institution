@@ -20,6 +20,14 @@ class AnothorExchangeController extends Controller
             'anothors' => $anothors
         ]);
     }
+    public function search()
+    { 
+        dd(22);  
+        // $anothors = AnothorExchange::get();
+        // return view('anothorexchange.index',[
+        //     'anothors' => $anothors
+        // ]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -27,12 +35,12 @@ class AnothorExchangeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {  
-       $anothor = AnothorExchange::get();
+    {    //dd(22);
+      // $anothor = AnothorExchange::get();
        $baskets = Basket::where('status' , '=' , 'active')->pluck('name' , 'id');
        return view('anothorexchange.create',[
            'baskets'=> $baskets,
-           'anothor'=> new anothor(),
+           'anothor'=> new AnothorExchange(),
        ]);
     }
 
@@ -141,7 +149,7 @@ class AnothorExchangeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {   //dd(20);
          $anothor = AnothorExchange::find($id);
          $anothor->delete();
         \Session::flash("msg", "w:تم المستفيد المستفيد ($anothor->name) بنجاح");

@@ -79,9 +79,30 @@ class PermissionsTableSeeder extends Seeder
            'id' => '15',
            'title' => 'user_delete',
            ],
+            [
+            'id' => '16',
+            'title' => 'user_access',
+            ],
+           
            [
-           'id' => '16',
-           'title' => 'user_access',
+           'id' => '17',
+           'title' => 'expenses',
+           ],
+           [
+           'id' => '18',
+           'title' => 'baskets',
+           ],
+           [
+           'id' => '19',
+           'title' => 'beneficiaries',
+           ],
+           [
+           'id' => '20',
+           'title' => 'repository',
+           ],
+           [
+           'id' => '21',
+           'title' => 'reports',
            ],
         ];
 

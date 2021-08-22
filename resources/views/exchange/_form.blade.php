@@ -5,7 +5,8 @@
                      <select class="form-control select2  {{ $errors->has('beneficiarie_id') ? 'is-invalid' : '' }}"  name="beneficiarie_id">
                         <option value="">--</option>
                         @foreach($beneficiaries as $id => $beneficiarie)
-                          <option value="{{ $id }}" {{ ((old('beneficiarie_id' , $exchange->beneficiarie_id ))) ? 'selected' : '' }}>{{ $beneficiarie }}</option>
+              <option value="{{ $id }}" @if($id == old('beneficiarie_id', $exchange->beneficiarie_id)) selected @endif>{{ $beneficiarie }}</option>
+                         {{-- // <option value="{{ $id }}" {{ ((old('beneficiarie_id' , $exchange->beneficiarie_id ))) ? 'selected' : '' }}>{{ $beneficiarie }}</option> --}}
                         @endforeach
                     </select>
                      @error('beneficiarie_id')
@@ -30,7 +31,7 @@
                       <select class="form-control  {{ $errors->has('basket_id') ? 'is-invalid' : '' }}" name="basket_id" id="basket_id" >
                         <option value="">--</option>
                         @foreach($baskets as $id => $basket)
-                        <option value="{{ $id }}" {{ (( old('basket_id' , $exchange->basket_id))) ? 'selected' : '' }}>{{ $basket }}</option>
+            <option value="{{ $id }}" @if($id == old('basket_id', $exchange->basket_id)) selected @endif>{{ $basket }}</option>
                         @endforeach
                     </select>
                     @error('basket_id')

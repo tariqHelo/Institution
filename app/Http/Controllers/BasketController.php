@@ -41,10 +41,20 @@ class BasketController extends Controller
     public function store(BasketRequest $request)
     {   
        // dd($request->all());
-        $file = $request->file('file'); // UplodedFile Obje
-
+       // $file = $request->file('file'); // UplodedFile Obje
+        if ($request->hasFile('file')) {
+            $file = $request->file('file'); // UplodedFile Object
+            $image_path = $file->store('/', [
+                'disk' => 'uploads',
+            ]);
+            $request->merge([
+                'file' => $image_path,
+            ]);
+        }
+        
         $basket = Basket::create([
-            'file' => $file->store('/', ['disk' => 'uploads']),
+            //dd($image_path),
+            'file' => $image_path,
             'name' => $request->post('name'),
             'price' => $request->post('price'),
             'quantity' => $request->post('quantity'),
@@ -52,6 +62,7 @@ class BasketController extends Controller
             'source' => $request->post('source'),
             'status' => $request->post('status', 'active'), 
         ]);
+       // dd($basket = Basket::create($request->all()));
         \Session::flash("msg", "s:تم إضافة السلة ($basket->name) بنجاح");
         return redirect()->route('basket.index');
     }
@@ -91,7 +102,27 @@ class BasketController extends Controller
      */
     public function update(BasketRequest $request, $id)
     {
+
        $basket = Basket::find($id);
+       if ($request->hasFile('file')) {
+            $file = $request->file('file'); // UplodedFile Object
+            $image_path = $file->store('/', [
+                'disk' => 'uploads',
+            ]);
+            $request->merge([
+                'file' => $image_path,
+            ]);
+        }
+        // $basket->update([
+        //     //dd($image_path),
+        //     //'file' => $image_path,
+        //     'name' => $request->post('name'),
+        //     'price' => $request->post('price'),
+        //     'quantity' => $request->post('quantity'),
+        //     //'beneficiarie_id' => $request->post('beneficiarie_id'),
+        //     'source' => $request->post('source'),
+        //     'status' => $request->post('status', 'active'), 
+        // ]);
        $basket->update($request->all());
        \Session::flash("msg", "s:تم تعديل السلة ($basket->name) بنجاح");
        return redirect()->route('basket.index');

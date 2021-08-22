@@ -15,7 +15,7 @@ class UsersController extends Controller
 {
     public function index()
     { 
-       abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+     //  abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $users = User::all();
         return view('admin.users.index', compact('users'));
     }
@@ -65,7 +65,7 @@ class UsersController extends Controller
     {
         $user->update($request->all());
         $user->roles()->sync($request->input('roles', []));
-        \Session::flash("msg", "تم تعديل المستخدم بنجاح");
+        \Session::flash("msg", "s:تم تعديل المستخدم ($user->name) بنجاح");
 
         return redirect()->route('users.index');
 
@@ -85,16 +85,8 @@ class UsersController extends Controller
         abort_if(Gate::denies('user_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $user->delete();
-        session()->flash("msg", "w: تم الحذف بنجاح");
+        \Session::flash("msg", "w:تم حذف المستخدم ($user->name) بنجاح");
         return back();
-
-    }
-
-    public function massDestroy(MassDestroyUserRequest $request)
-    {
-        User::whereIn('id', request('ids'))->delete();
-
-        return response(null, Response::HTTP_NO_CONTENT);
 
     }
 }

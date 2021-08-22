@@ -33,7 +33,7 @@
                       <select class="form-control  {{ $errors->has('basket_id') ? 'is-invalid' : '' }}" name="basket_id" id="basket_id" >
                         <option value="">--</option>
                         @foreach($baskets as $id => $basket)
-                        <option value="{{ $id }}" {{ (( old('basket_id', $anothor->basket))) ? 'selected' : '' }}>{{ $basket }}</option>
+                          <option value="{{ $id }}" @if($id == old('basket_id', $anothor->basket_id)) selected @endif>{{ $basket }}</option>
                         @endforeach
                     </select>
                     @error('basket_id')

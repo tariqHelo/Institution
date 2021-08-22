@@ -31,7 +31,7 @@ class ExchangeController extends Controller
     public function create()
     { 
         $baskets = Basket::where('status' , '=' , 'active')->pluck('name' , 'id');
-        $beneficiaries = Beneficiaries::pluck('name' , 'id');
+        $beneficiaries = Beneficiaries::pluck('id_number' , 'id');
         //dd($beneficiaries);
         return view('exchange.create',[
           'baskets'=> $baskets,
@@ -99,7 +99,7 @@ class ExchangeController extends Controller
     {    //dd($id);
         $baskets = Basket::where('status' , '=' , 'active')->pluck('name' , 'id');
         $exchange = Exchange::findOrFail($id);
-        $beneficiaries = Beneficiaries::pluck('name' , 'id');
+        $beneficiaries = Beneficiaries::pluck('id_number' , 'id');
         return view('exchange.edit',[
         'exchange'=> $exchange,
         'baskets'=> $baskets,

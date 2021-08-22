@@ -20,7 +20,7 @@ class CreateAnothorExchangesTable extends Migration
             $table->longText('note');
             $table->integer('quantity');
             $table->string('address');
-            $table->foreignId('basket_id')->constrained('baskets')->on('id')->restrictOnDelete();
+            $table->foreignId('basket_id')->constrained('baskets')->on('id')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Exchange extends Model
 {
+    // public const CREATED_AT = 'created';
+    // public const UPDATED_AT = 'updated';
+
+    protected $dates = ['created_at'];
+
     use HasFactory;
      protected $fillable=[
         'beneficiarie_id',

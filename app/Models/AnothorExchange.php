@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class AnothorExchange extends Model
 {
     use HasFactory;
- 
+   // public const CREATED_AT = 'created';
+ //   public const UPDATED_AT = 'updated';
+
+    protected $dates = ['created_at'];
+    
     protected $fillable= [
     'name',
     'id_number',

@@ -51,7 +51,9 @@
                           </td>
                         	<td>   
                               <a href="{{route('basket.edit' , $basket->id )}}" class="btn btn-primary btn-sm"><i class='fa fa-edit'></i></a>
-                          <a href="/uploads/{{ $basket->file }}" target="_blank" class="btn btn-success btn-sm"><i class='fa fa-eye'></i></a>
+                              @if($basket->file)
+                               <a href="/uploads/{{ $basket->file }}" target="_blank" class="btn btn-success btn-sm"><i class='fa fa-eye'></i></a>
+                              @endif
                               <a href="{{route('basket.delete' , $basket->id )}}" onclick='return confirm("Are you sure dude?")' class="btn btn-danger btn-sm"><i class='fa fa-trash'></i></a>
                         </td>
                     </tr>
