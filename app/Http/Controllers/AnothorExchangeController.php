@@ -6,6 +6,7 @@ use App\Models\AnothorExchange;
 use Illuminate\Http\Request;
 use App\Models\Basket;
 use App\Http\Requests\AnothorRequest;
+use Illuminate\Support\Facades\DB;
 
 class AnothorExchangeController extends Controller
 {
@@ -150,8 +151,13 @@ class AnothorExchangeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {   //dd(20);
+    {   
          $anothor = AnothorExchange::findOrFail($id);
+          $id = $anothor->basket_id;
+          // dd($id);
+          DB::table('baskets')->where('id', $id)->update([
+          'quantity' => DB::raw('quantity +'.$anothor->quantity),
+          ]);
          $anothor->delete();
         \Session::flash("msg", "w:تم المستفيد المستفيد ($anothor->name) بنجاح");
         return redirect()->route('anothor.index');

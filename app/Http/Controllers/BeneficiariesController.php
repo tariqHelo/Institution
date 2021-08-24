@@ -104,7 +104,7 @@ class BeneficiariesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {  
        $beneficiarie = Beneficiaries::find($id);
        $beneficiarie->delete();
        \Session::flash("msg", "w:تم حذف مستفيد ($beneficiarie->name) بنجاح");

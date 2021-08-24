@@ -15,6 +15,7 @@ class Basket extends Model
     protected $fillable=[
          'name',
          'quantity',
+         'o_qty',
          'price',
          'status',
          'source',
@@ -30,7 +31,7 @@ class Basket extends Model
     }
     public function ex()
     { 
-     return $this->exchange()->get()->sum("quantity");
+     return $this->exchange()->get()->sum("quantity"); //100
     }
     public function as()
     { 
@@ -38,7 +39,7 @@ class Basket extends Model
     }
     public function total()
     {
-      return $this->ex()+ $this->as();
+      return $this->ex() + $this->as();// 0 + 100 = 100
 
     }
 

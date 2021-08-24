@@ -36,12 +36,12 @@
                 <tbody>
                   @foreach($baskets as $basket)
                     <tr>
-                        <th>{{$basket->id}}</th>
-                        <th>{{$basket->name}}</th>
-                        <td>{{$basket->quantity}}</td>
-                        <td>{{$basket->quantity + $basket->total()  }}</td>
-                        <td>{{$basket->total() }}</td>
-                        <td>{{$basket->price}}</td>
+                         <th>{{ $basket->id }}</th>
+                         <th>{{ $basket->name }}</th>
+                         <td>{{ $basket->o_qty - $basket->total()}}</td>
+                         <td>{{ $basket->o_qty }}</td>
+                         <td>{{ $basket->total() }}</td>
+                         <td>{{ $basket->price }}</td>
                           <td>
                               @if($basket->status=='active')
                                   <span class="btn btn-success btn-sm">مفعل</span>
