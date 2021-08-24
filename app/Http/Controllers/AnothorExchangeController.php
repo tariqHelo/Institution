@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AnothorExchange;
 use Illuminate\Http\Request;
 use App\Models\Basket;
+use App\Http\Requests\AnothorRequest;
 
 class AnothorExchangeController extends Controller
 {
@@ -50,7 +51,7 @@ class AnothorExchangeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AnothorRequest $request)
     {
      // dd($request->all());
 
@@ -115,7 +116,7 @@ class AnothorExchangeController extends Controller
      * @param  \App\Models\AnothorExchange  $anothorExchange
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,  $anothorExchange)
+    public function update(AnothorRequest $request, $id)
     {
         $id = request()->input('basket_id');
         
@@ -128,8 +129,8 @@ class AnothorExchangeController extends Controller
                 }
             }],
         ]);
-        $basket = AnothorExchange::find($id);
-        $anothor-updaate([ 
+        $basket = AnothorExchange::findOrFail($id);
+        $anothor-update([ 
             'name' => $request->post('name'),
             'id_number' => $request->post('id_number'),
             'address' => $request->post('address'),
@@ -150,7 +151,7 @@ class AnothorExchangeController extends Controller
      */
     public function destroy($id)
     {   //dd(20);
-         $anothor = AnothorExchange::find($id);
+         $anothor = AnothorExchange::findOrFail($id);
          $anothor->delete();
         \Session::flash("msg", "w:تم المستفيد المستفيد ($anothor->name) بنجاح");
         return redirect()->route('anothor.index');

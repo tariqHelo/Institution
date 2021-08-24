@@ -67,7 +67,7 @@ class ExchangeController extends Controller
         
 
         $basket = Basket::find($id);
-        $exchange = Exchange::updateOrCreate([
+        $exchange = Exchange::create([
             'beneficiarie_id' => $request->post('beneficiarie_id'),
             'quantity' => $request->post('quantity'),
             'note' => $request->post('note'),
@@ -114,11 +114,12 @@ class ExchangeController extends Controller
      * @param  \App\Models\Exchange  $exchange
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Exchange $exchange)
+    public function update(ExchangeRequest $request,$id)
     {
         
         $id = request()->input('basket_id');
-        
+        $exchange = Exchange::findOrFail($id);
+
         $request->validate([
             'quantity' => ['int', 'min:1', function($attr, $value, $fail) {
                 $id = request()->input('basket_id');
@@ -129,12 +130,7 @@ class ExchangeController extends Controller
             }],
         ]);
         $basket = Basket::find($id);
-        $exchange-updaate([
-            'beneficiarie_id' => $request->post('beneficiarie_id'),
-            'quantity' => $request->post('quantity'),
-            'note' => $request->post('note'),
-            'basket_id' => $request->post('basket_id'),
-        ]);
+        $exchange->update($request->all());
         $basket->decrement('quantity', $request->quantity);
         \Session::flash("msg", "s:تم تعديل المستفيد بنجاح");
         return redirect()->route('exchange.index');
@@ -147,8 +143,9 @@ class ExchangeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {   
         $exchange = Exchange::find($id);
+      //  $exchange->increment('quantity', $exchange->quantity);
         $exchange->delete();
         \Session::flash("msg", "w:تم حذف مستفيد  بنجاح");
         return redirect()->route('exchange.index');

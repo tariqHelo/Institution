@@ -42,27 +42,19 @@ class BasketController extends Controller
     {   
        // dd($request->all());
        // $file = $request->file('file'); // UplodedFile Obje
-        if ($request->hasFile('file')) {
-            $file = $request->file('file'); // UplodedFile Object
-            $image_path = $file->store('/', [
-                'disk' => 'uploads',
-            ]);
-            $request->merge([
-                'file' => $image_path,
-            ]);
-        }
-        
+         if ($request->hasFile('file')) {
+         // $file = $request->file('file'); // UplodedFile Object
+         $fileName = time().'.'.$request->file->extension();
+         $request->file->move(public_path('uploads'), $fileName);
+         }
         $basket = Basket::create([
-            //dd($image_path),
-            'file' => $image_path,
+            'file' => $fileName ?? "",
             'name' => $request->post('name'),
             'price' => $request->post('price'),
             'quantity' => $request->post('quantity'),
-            //'beneficiarie_id' => $request->post('beneficiarie_id'),
             'source' => $request->post('source'),
             'status' => $request->post('status', 'active'), 
         ]);
-       // dd($basket = Basket::create($request->all()));
         \Session::flash("msg", "s:تم إضافة السلة ($basket->name) بنجاح");
         return redirect()->route('basket.index');
     }
@@ -104,28 +96,23 @@ class BasketController extends Controller
     {
 
        $basket = Basket::find($id);
-       if ($request->hasFile('file')) {
-            $file = $request->file('file'); // UplodedFile Object
-            $image_path = $file->store('/', [
-                'disk' => 'uploads',
+           if ($request->hasFile('file')) {
+           $fileName = time().'.'.$request->file->extension();
+           $request->file->move(public_path('uploads'), $fileName);
+           }
+
+           // $ss = Basket::find($id);
+            //dd($ss->file);
+           $basket->update([
+           'file' => $fileName ?? "$basket->file",
+           'name' => $request->post('name'),
+           'price' => $request->post('price'),
+           'quantity' => $request->post('quantity'),
+           'source' => $request->post('source'),
+           'status' => $request->post('status', 'active'),
             ]);
-            $request->merge([
-                'file' => $image_path,
-            ]);
-        }
-        // $basket->update([
-        //     //dd($image_path),
-        //     //'file' => $image_path,
-        //     'name' => $request->post('name'),
-        //     'price' => $request->post('price'),
-        //     'quantity' => $request->post('quantity'),
-        //     //'beneficiarie_id' => $request->post('beneficiarie_id'),
-        //     'source' => $request->post('source'),
-        //     'status' => $request->post('status', 'active'), 
-        // ]);
-       $basket->update($request->all());
-       \Session::flash("msg", "s:تم تعديل السلة ($basket->name) بنجاح");
-       return redirect()->route('basket.index');
+        \Session::flash("msg", "s:تم تعديل السلة ($basket->name) بنجاح");
+        return redirect()->route('basket.index');
     }
 
     /**
@@ -138,7 +125,7 @@ class BasketController extends Controller
     {
        $basket = Basket::findOrFail($id);
        $basket->delete();
-       \Storage::disk('uploads')->delete($basket->file);
+      // \Storage::disk('uploads')->delete($basket->file);
        \Session::flash("msg", "w:تم حذف سلة ($basket->name) بنجاح");
        return redirect()->route('basket.index');
     }
