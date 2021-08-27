@@ -56,7 +56,7 @@ class AnothorExchangeController extends Controller
     {
      // dd($request->all());
 
-      $id = request()->input('basket_id');
+      $ids = request()->input('basket_id');
         
         
         $request->validate([
@@ -69,7 +69,7 @@ class AnothorExchangeController extends Controller
                 }
             }],
         ]);
-        $basket = Basket::find($id);
+        $basket = Basket::find($ids);
         $anothor = AnothorExchange::Create([
             'name' => $request->post('name'),
             'id_number' => $request->post('id_number'),
@@ -119,8 +119,7 @@ class AnothorExchangeController extends Controller
      */
     public function update(AnothorRequest $request, $id)
     {
-        $id = request()->input('basket_id');
-        
+        $ids = request()->input('basket_id');
         $request->validate([
             'quantity' => ['int', 'min:1', function($attr, $value, $fail) {
                 $id = request()->input('basket_id');
@@ -130,8 +129,19 @@ class AnothorExchangeController extends Controller
                 }
             }],
         ]);
-        $basket = AnothorExchange::findOrFail($id);
-        $anothor-update([ 
+
+        $anothor = AnothorExchange::find($id);
+
+        if($anothor->quantity > $request->quantity){
+           $ids = request()->input('basket_id');
+           DB::table('baskets')->where('id', $ids)->update([
+           'quantity' => DB::raw('quantity +'.($request->quantity + $anothor->quantity))
+           ]);
+        }elseif($anothor->quantity < $request->quantity) {
+            $basket = Basket::find($ids);
+            $basket->decrement('quantity', ($request->quantity - $anothor->quantity));
+        }
+        $anothor->update([ 
             'name' => $request->post('name'),
             'id_number' => $request->post('id_number'),
             'address' => $request->post('address'),
@@ -139,7 +149,6 @@ class AnothorExchangeController extends Controller
             'basket_id' => $request->post('basket_id'),
             'note' => $request->post('note'),
         ]);
-        $basket->decrement('quantity', $request->quantity);
         \Session::flash("msg", "s:تم تعديل المستفيد ($anothor->name) بنجاح");
         return redirect()->route('anothor.index');
     }

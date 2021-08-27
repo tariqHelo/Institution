@@ -102,13 +102,12 @@ class BasketController extends Controller
            $request->file->move(public_path('uploads'), $fileName);
            }
 
-           // $ss = Basket::find($id);
-            //dd($ss->file);
            $basket->update([
            'file' => $fileName ?? "$basket->file",
            'name' => $request->post('name'),
            'price' => $request->post('price'),
-           'quantity' => $request->post('quantity'),
+            'quantity' => $request->post('quantity'),
+            'o_qty' => $request->post('quantity'),
            'source' => $request->post('source'),
            'status' => $request->post('status', 'active'),
             ]);

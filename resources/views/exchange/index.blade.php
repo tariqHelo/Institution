@@ -60,13 +60,7 @@
                         <td>{{$exchange->note ?? ""}}</td>
                         	<td>   
                               <a href="{{route('exchange.edit' , $exchange->id )}}" class="btn btn-primary btn-sm"><i class='fa fa-edit'></i></a>
-                               {{-- <form action="{{route('exchange.delete' , $exchange->id )}}" method="post">
-                                 <input type="hidden" value="{{$exchange->beneficiarie->id}}" name="user_id">
-                                  @csrf
-                                  @method('delete')
-                                  <button type="submit"  onclick='return confirm("Are you sure dude?")' class="btn btn-danger btn-sm"><i class='fa fa-trash'></i></button>
-                                </form> --}}
-                              <a href="{{route('exchange.delete' , $exchange->id  , $exchange->basket->id )}}" onclick='return confirm("Are you sure dude?")' class="btn btn-danger btn-sm"><i class='fa fa-trash'></i></a>
+                              <a href="{{route('exchange.delete' , $exchange->id)}}" onclick='return confirm("Are you sure dude?")' class="btn btn-danger btn-sm"><i class='fa fa-trash'></i></a>
                         </td>
                     </tr>
                   @endforeach

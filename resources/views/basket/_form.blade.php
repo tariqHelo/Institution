@@ -9,8 +9,8 @@
                   </div>
                   <div class="form-group">
                     <label>الكمية </label>
-                    <input type="string" class="form-control @error('quantity') is-invalid @enderror" name="quantity"  placeholder=" الكمية" value="{{ old('quantity' , $basket->quantity) }}">
-                     @error('quantity')
+                    <input type="string" class="form-control @error('o_qty') is-invalid @enderror" name="o_qty"  placeholder=" الكمية" value="{{ old('o_qty' , $basket->o_qty) }}">
+                     @error('o_qty')
                         <p class="text-danger">{{ $message }}</p>
                       @enderror
                   </div>

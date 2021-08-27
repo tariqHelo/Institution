@@ -6,19 +6,12 @@
                         <option value="">--</option>
                         @foreach($beneficiaries as $id => $beneficiarie)
               <option value="{{ $id }}" @if($id == old('beneficiarie_id', $exchange->beneficiarie_id)) selected @endif>{{ $beneficiarie }}</option>
-                         {{-- // <option value="{{ $id }}" {{ ((old('beneficiarie_id' , $exchange->beneficiarie_id ))) ? 'selected' : '' }}>{{ $beneficiarie }}</option> --}}
                         @endforeach
                     </select>
                      @error('beneficiarie_id')
                         <p class="text-danger">{{ $message }}</p>
                       @enderror
                   </div>
-                  {{-- <select class="form-control">
-                    <option selected="selected">orange</option>
-                    <option>white</option>
-                    <option>purple</option>
-                  </select> --}}
-
                   <div class="form-group">
                     <label>الكمية </label>
                     <input type="string" class="form-control @error('quantity') is-invalid @enderror" name="quantity"  placeholder=" الكمية" value="{{ old('quantity' , $exchange->quantity) }}">
@@ -28,10 +21,10 @@
                   </div>
                   <div class="form-group">
                     <label> إسم السلة  </label>
-                      <select class="form-control  {{ $errors->has('basket_id') ? 'is-invalid' : '' }}" name="basket_id" id="basket_id" >
+                      <select class="form-control  {{ $errors->has('basket_id') ? 'is-invalid' : '' }}" name="basket_id">
                         <option value="">--</option>
                         @foreach($baskets as $id => $basket)
-            <option value="{{ $id }}" @if($id == old('basket_id', $exchange->basket_id)) selected @endif>{{ $basket }}</option>
+                           <option value="{{ $id }}" @if($id == old('basket_id', $exchange->basket_id)) selected @endif>{{ $basket }}</option>
                         @endforeach
                     </select>
                     @error('basket_id')

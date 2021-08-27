@@ -26,9 +26,9 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="{{route('exchange.update' , $exchange->id)}}" method="POST">
+              <form role="form" action="{{route('exchange.update' ,$exchange->id)}}" method="POST">
                 @csrf
-                @method('PATCH')
+                @method('PUT')
                 @include('exchange._form',[
                   'button' => "تعديل"
                 ])

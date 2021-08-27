@@ -109,11 +109,9 @@ class ExchangeController extends Controller
      * @param  \App\Models\Exchange  $exchange
      * @return \Illuminate\Http\Response
      */
-    public function update(ExchangeRequest $request,$id)
-    {
-        
-        $id = request()->input('basket_id');
-        $exchange = Exchange::findOrFail($id);
+    public function update(ExchangeRequest $request , $id)
+    { 
+        $ids = request()->input('basket_id');
 
         $request->validate([
             'quantity' => ['int', 'min:1', function($attr, $value, $fail) {
@@ -124,9 +122,23 @@ class ExchangeController extends Controller
                 }
             }],
         ]);
-        $basket = Basket::find($id);
-        $exchange->update($request->all());
-        $basket->decrement('quantity', $request->quantity);
+        $exchange = Exchange::find($id);
+       // dd($exchange->quantity);
+        if($exchange->quantity > $request->quantity){
+           $ids = request()->input('basket_id');
+           DB::table('baskets')->where('id', $ids)->update([
+           'quantity' => DB::raw('quantity +'.($request->quantity + $exchange->quantity))
+           ]);
+        }elseif($exchange->quantity < $request->quantity) {
+            $basket = Basket::find($ids);
+            $basket->decrement('quantity', ($request->quantity - $exchange->quantity));
+        }
+        $exchange->update([
+            'beneficiarie_id' => request()->input('beneficiarie_id'),
+            'quantity' => request()->input('quantity'),
+            'basket_id' => request()->input('basket_id'),
+            'note' => request()->input('note'),
+        ]);
         \Session::flash("msg", "s:تم تعديل المستفيد بنجاح");
         return redirect()->route('exchange.index');
     }
@@ -150,3 +162,7 @@ class ExchangeController extends Controller
         return redirect()->route('exchange.index');
     }
 }
+// $ids = request()->input('basket_id');
+// DB::table('baskets')->where('id', $ids)->update([
+// 'quantity' => DB::raw('quantity +'.$request->quantity),
+// ]);
