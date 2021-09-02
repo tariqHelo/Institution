@@ -31,12 +31,14 @@ class ExchangeController extends Controller
     public function create()
     { 
         $baskets = Basket::where('status' , '=' , 'active')->pluck('name' , 'id');
+        $basketss = Basket::all();
         $beneficiaries = Beneficiaries::pluck('id_number' , 'id');
         //dd($beneficiaries);
         return view('exchange.create',[
           'baskets'=> $baskets,
           'exchange'=> new exchange(),
-          'beneficiaries'=> $beneficiaries
+          'beneficiaries'=> $beneficiaries,
+        'basketss'=> $basketss,
         ]);
     }
 

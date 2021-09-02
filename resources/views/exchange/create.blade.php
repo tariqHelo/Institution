@@ -17,7 +17,37 @@
     
 @section('content')
 
-<div class="col-md-12">
+<div class="col-md-6">
+    <div class="card">
+              <div class="card-header">
+                <h5 class="card-title-rtl">الكميات المتاحة في السلال </h5>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>إسم السلة </th>
+                      <th>الكمية المتوفرة</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($basketss as $basket)
+                    <tr>
+                         <th>{{ $basket->id }}</th>
+                         <th>{{ $basket->name }}</th>
+                         <td>{{ $basket->o_qty - $basket->total()}}</td>
+                    </tr>
+                  @endforeach
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
               @include('shared.msg')
             <!-- general form elements -->
             <div class="card card-success">

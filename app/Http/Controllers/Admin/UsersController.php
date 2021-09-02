@@ -10,6 +10,7 @@ use App\Models\User;
 use Gate;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Request;
+use App\Models\Repository;
 
 class UsersController extends Controller
 {
@@ -24,10 +25,12 @@ class UsersController extends Controller
     {
       //  abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $roles = Role::all()->pluck('title', 'id');
+        $roles = Role::pluck('title', 'id');
+        $repositorys = Repository::pluck('name', 'id');
         return view('admin.users.create',[
             'roles' => $roles,
             'user' => new User(),
+            'repositorys' => $repositorys,
         ]);
     }
 
@@ -43,6 +46,7 @@ class UsersController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'repository_id' => $request->repository_id,
             'password' => \Hash::make($request->password),
         ]);
         $user->roles()->sync($request->input('roles', []));

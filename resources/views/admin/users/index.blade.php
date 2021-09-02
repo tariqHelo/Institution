@@ -37,6 +37,9 @@
                             الإيميل
                         </th>
                         <th>
+                            صلاحية المستودع
+                        </th>
+                        <th>
                           الرولز
                         </th>
                         <th>
@@ -55,6 +58,9 @@
                             </td>
                             <td>
                                 {{ $user->email ?? '' }}
+                            </td>
+                             <td>
+                                {{ $user->repository_id?? '' }}
                             </td>
                             <td>
                                 @foreach($user->roles as $key => $item)

@@ -45,6 +45,16 @@
                     </select>
                     </div>
                   </div>
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 control-label">إختيار الرولز</label>
+                    <div class="col-sm-10">
+                      <select class="form-control select2 {{ $errors->has('repository_id') ? 'is-invalid' : '' }}" name="repository_id" required>
+                        @foreach($repositorys as $id => $repository)
+                            <option value="{{ $id }}" {{ in_array($id, old('repository_id', [])) ? 'selected' : '' }}>{{ $repository }}</option>
+                        @endforeach
+                    </select>
+                    </div>
+                  </div>
 
                  <!-- /.card-body -->
                 <div class="card-footer">

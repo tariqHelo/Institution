@@ -52,7 +52,7 @@ class BasketController extends Controller
             'name' => $request->post('name'),
             'price' => $request->post('price'),
             'quantity' => $request->post('quantity'),
-            'o_qty' => $request->post('quantity'),
+           // 'o_qty' => $request->post('quantity'),
             'source' => $request->post('source'),
             'status' => $request->post('status', 'active'), 
         ]);
