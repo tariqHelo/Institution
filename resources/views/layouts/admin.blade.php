@@ -71,7 +71,10 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                 @php 
+                  $baskets = \App\Models\Basket::count();    
+                @endphp
+                <h3>{{$baskets}}</h3>
 
                 <p>السلال</p>
               </div>
@@ -86,7 +89,10 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                @php 
+                  $repository = \App\Models\Repository::count();    
+                @endphp
+                <h3>{{$repository}}</h3>
 
                 <p>عدد المستودعات</p>
               </div>
@@ -101,7 +107,12 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+
+                @php 
+                  $count = \App\Models\User::count();    
+                @endphp
+                
+                <h3>{{$count}}</h3>
 
                 <p>جميع المستخدمين</p>
               </div>
@@ -116,7 +127,10 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                @php 
+                  $beneficiaries = \App\Models\Beneficiaries::count();    
+                @endphp
+                <h3>{{$beneficiaries}}</h3>
 
                 <p>عدد المستفيدين</p>
               </div>
