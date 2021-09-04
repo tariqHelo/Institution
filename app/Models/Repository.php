@@ -17,7 +17,6 @@ class Repository extends Model
     {
        return $this->belongsToMany(Basket::class);
     }
-
 //    public function count()
 //     { 
 //         return $this->where('basket_id')->count();

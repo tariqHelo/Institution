@@ -19,18 +19,28 @@
                         <p class="text-danger">{{ $message }}</p>
                       @enderror
                   </div>
-                  <div class="form-group">
+                    @php
+                       $id = Auth::user()->repository_id
+                    @endphp
+                    @php
+                       $repos = \App\Models\Repository::find($id);
+                    @endphp
+                   @if($id !== null)
+                   {{-- {{dd($repos->baskets)}} --}}
                     <label> إسم السلة  </label>
                       <select class="form-control  {{ $errors->has('basket_id') ? 'is-invalid' : '' }}" name="basket_id">
                         <option value="">--</option>
-                        @foreach($baskets as $id => $basket)
-                           <option value="{{ $id }}" @if($id == old('basket_id', $exchange->basket_id)) selected @endif>{{ $basket }}</option>
+                        @foreach($repos->baskets  as $basket)
+                           <option value="{{ $basket->id }}" @if($basket->id == old('basket_id', $exchange->basket_id)) selected @endif>{{ $basket->name }}</option>
                         @endforeach
                     </select>
                     @error('basket_id')
                         <p class="text-danger">{{ $message }}</p>
                       @enderror
-                  </div>
+                   @else
+                      {{dd('no')}}
+                   @endif
+
                   <div class="form-group">
                     <label>ملاحظات </label>
                     <input type="text" class="form-control" value="{{ old('note', $exchange->note) }}" name="note" placeholder="ملاحظات ...">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Beneficiaries;
+use App\Models\User;
 
 use App\Models\Exchange;
 use Illuminate\Http\Request;
@@ -29,16 +30,18 @@ class ExchangeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    { 
+    {   
+        //$user = User::pluck('repository_id');
+       // dd($user);
         $baskets = Basket::where('status' , '=' , 'active')->pluck('name' , 'id');
-        $basketss = Basket::all();
+        $basketss = Basket::where('status' , '=' , 'active')->get();
         $beneficiaries = Beneficiaries::pluck('id_number' , 'id');
         //dd($beneficiaries);
         return view('exchange.create',[
           'baskets'=> $baskets,
           'exchange'=> new exchange(),
           'beneficiaries'=> $beneficiaries,
-        'basketss'=> $basketss,
+          'basketss'=> $basketss,
         ]);
     }
 

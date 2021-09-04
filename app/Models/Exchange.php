@@ -29,4 +29,10 @@ class Exchange extends Model
     {
         return $this->belongsTo(Basket::class);
     }
+
+    // public function repository()
+    // {
+    //    return $this->hasOne(Repository::class);
+    // }
+
 }

@@ -60,7 +60,6 @@ class RepositoryController extends Controller
     public function show($id)
     {
         $repository = Repository::find($id);
-        //$cities = City::where('id', '=', $country->id)->get();
         $baskets= $repository->baskets;
          return view('repository.show')
          ->with('baskets' , $baskets);
